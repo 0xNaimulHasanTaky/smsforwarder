@@ -82,8 +82,7 @@ def smsforward(looping=False):
 
     for j in jd:
         if datetime.datetime.fromisoformat(j['received']) > lastSMS:  # Comparing SMS timing
-            for f in filter_s:
-                if f in j['body'].lower() and j['type'] == "inbox":  # Checking if the SMS is in inbox and the filter(s) are matching
+            if j['type'] == "inbox":  # Checking if the SMS is in inbox
                     print(f"{f} found")
                     for m in mnumber_s:
                         print(f"Forwarding to {m}")
