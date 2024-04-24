@@ -87,6 +87,6 @@ def smsforward(looping=False):
 # calling sms forward function for the first time
 smsforward()
 # The following loop will repeat the script exexcution
-while true:
+while True:
     time.sleep(interV)
     smsforward(looping=True)
