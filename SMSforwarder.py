@@ -43,7 +43,8 @@ def smsforward(looping=False):
             print(f"""{bcolors.BOLD}Old configuration file found! What do You want to do?{bcolors.ENDC}
                 {bcolors.OKGREEN}1) Continue with old settings{bcolors.ENDC}
                 {bcolors.WARNING}2) Remove old settings and start afresh{bcolors.ENDC}""")
-            rst = input("Please enter your choice number: ")
+            # rst = input("Please enter your choice number: ")
+            rst = "1"
         if rst == "1":
             print(f"{bcolors.OKGREEN}Starting with old settings...........{bcolors.ENDC}")
             cfile = open(cfgFile, "r")
