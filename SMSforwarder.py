@@ -3,6 +3,7 @@ import json
 import datetime
 import os.path
 import time
+import shlex
 
 interV = 15  # Script repeat interval in seconds
 print(f"Welcome to SMS Forwarder")
@@ -78,7 +79,8 @@ def smsforward(looping=False):
             if j['type'] == "inbox":  # Checking if the SMS is in inbox
                     for m in mnumber_s:
                         print(f"Forwarding SMS to: {m}")
-                        resp = os.popen(f"termux-sms-send -n {m} {j['body']}")  # forwarding sms to predefined mobile number(s)
+                        sms_body = shlex.quote(j['body'])   # Properly escape special characters in the SMS body
+                        resp = os.popen(f"termux-sms-send -n {m} {sms_body}")  # forwarding sms to predefined mobile number(s)
                         tfile = open(tmpFile, "w")
                         tfile.write(j['received'])
                         tfile.close()
