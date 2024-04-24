@@ -5,7 +5,6 @@ import os.path
 import time
 
 interV = 15  # Script repeat interval in seconds
-looper = False  # variable for deciding looping mechanisam
 print(f"Welcome to SMS Forwarder")
 
 class bcolors:
@@ -69,12 +68,6 @@ def smsforward(looping=False):
         lastSMS = datetime.datetime.fromisoformat(tfile.read())
         tfile.close()
 
-    if not looper:
-        # ask user to run the script on repeat
-        lop = input(f"Keep running after each {interV} second (y/n): ")
-        if lop == "y":
-            looper = True  # This will keep the script after defined interval
-            print("You can stop the script anytime by pressing Ctrl+C")
     print(f"Last SMS forwarded on {lastSMS}")
     jdata = os.popen("termux-sms-list -l 50").read()  # Reading latest 50 SMSs using termux-api
     jd = json.loads(jdata)  # storing JSON output
@@ -93,7 +86,7 @@ def smsforward(looping=False):
 
 # calling sms forward function for the first time
 smsforward()
-# if user decided to repeat the script exexcution, the following loop will do that
-while looper:
+# The following loop will repeat the script exexcution
+while true:
     time.sleep(interV)
     smsforward(looping=True)
