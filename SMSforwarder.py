@@ -83,9 +83,8 @@ def smsforward(looping=False):
     for j in jd:
         if datetime.datetime.fromisoformat(j['received']) > lastSMS:  # Comparing SMS timing
             if j['type'] == "inbox":  # Checking if the SMS is in inbox
-                    print(f"{f} found")
                     for m in mnumber_s:
-                        print(f"Forwarding to {m}")
+                        print(f"Forwarding SMS to: {m}")
                         resp = os.popen(f"termux-sms-send -n {m} {j['body']}")  # forwarding sms to predefined mobile number(s)
                         tfile = open(tmpFile, "w")
                         tfile.write(j['received'])
