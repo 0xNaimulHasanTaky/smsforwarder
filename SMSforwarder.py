@@ -32,12 +32,6 @@ def smsforward(looping=False):
     if not os.path.exists(cfgFile):
         # file not found. creating a new configuration file
         cfile = open(cfgFile, "a")
-        filters = input(f"{bcolors.BOLD}Please enter keyword filter(s) separated by comma (',') : {bcolors.ENDC}")
-        filter_s = filters.split(",")
-        cfile.write(filters.lower())
-        cfile.write("\n")
-        print("")
-        print("")
         mnumbers = input(f"{bcolors.BOLD}Please enter mobile number(s) separated by comma (',') : {bcolors.ENDC}")
         mnumber_s = mnumbers.split(",")
         cfile.write(mnumbers)
@@ -54,8 +48,7 @@ def smsforward(looping=False):
             print(f"{bcolors.OKGREEN}Starting with old settings...........{bcolors.ENDC}")
             cfile = open(cfgFile, "r")
             cdata = cfile.read().splitlines()
-            filter_s = cdata[0].split(",")
-            mnumber_s = cdata[1].split(",")
+            mnumber_s = cdata[0].split(",")
         elif rst == "2":
             print(f"{bcolors.WARNING}Removing old Configuration files..........{bcolors.ENDC}")
             os.remove(cfgFile)
