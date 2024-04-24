@@ -78,7 +78,7 @@ def smsforward(looping=False):
             if j['type'] == "inbox":  # Checking if the SMS is in inbox
                     for m in mnumber_s:
                         print(f"Forwarding SMS to: {m}")
-                        resp = os.popen(f"termux-sms-send -n {m} {j['body']}")  # forwarding sms to predefined mobile number(s)
+                        resp = os.popen(f"termux-sms-send -n {m} {j["body"]}")  # forwarding sms to predefined mobile number(s)
                         tfile = open(tmpFile, "w")
                         tfile.write(j['received'])
                         tfile.close()
